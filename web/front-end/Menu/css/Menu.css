@@ -1,0 +1,249 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+label {
+  font-weight: 400;
+  padding-top: 20px;
+}
+.new-layer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+}
+.new-layer div {
+  background-color: #fff;
+}
+.new-layer .bill-list {
+  margin: 0 12px;
+  min-height: 500px;
+}
+
+
+
+/* navigation */
+#nav {
+  height: 46px;
+  background-color: black;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+}
+#nav .list {
+  
+  line-height: 46px;
+  display: flex;
+  justify-content: center;
+}
+#nav .list .content {
+  color: white;
+  padding: 0 30px;
+}
+#nav .list .content a {
+  color: white;
+  line-height: 46px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+#nav .list .content:hover {
+  background-color: #ccc;
+}
+#nav .list .content:hover {
+  color: #000;
+}
+/* image-restaurant */
+#image-restaurant img {
+  width: 100%;
+}
+
+
+
+/* employee */
+#employee{
+  margin-top: 100px;
+  display: none;
+}
+h2 {
+  padding: 50px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 40px;
+}
+
+.row .col {
+  font-size: 30px;
+}
+.row .col select {
+  font-size: 30px;
+  padding: 10px 20px;
+  line-height: 50px;
+}
+.row .col input {
+  line-height: 50px;
+  font-size: 30px;
+  padding: 0 20px;
+  width: 100%;
+}
+#employee .row .col #male,
+#employee .row .col #female {
+  width: auto;
+  font-size: 30px;
+}
+.employee-confirm {
+  margin-top: 20px;
+  color: #000;
+  background-color: #ccc;
+  border: none;
+  padding: 14px 24px;
+  font-size: 30px;
+}
+
+.employee-info {
+  color: #000;
+  background-color: #ccc;
+  border: none;
+  padding: 14px 24px;
+  font-size: 30px;
+  float: right;
+}
+/* work-shift */
+#work-shift {
+  display: none;
+  margin-top: 100px;
+}
+/* Wage */
+#wage {
+  display: none;
+  margin-top: 100px;
+}
+/* bill */
+#bill {
+  display: none;
+  margin-top: 100px;
+}
+#bill img {
+  width: 100%;
+  height: 200px;
+}
+.tabs {
+  display: flex;
+  position: relative;
+  margin-bottom: 20px;
+}
+.tabs .line {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 6px;
+  border-radius: 15px;
+  background-color: #c23564;
+  transition: all 0.2s ease;
+}
+.tab-item {
+  min-width: 80px;
+  padding: 16px 20px 11px 20px;
+  font-size: 20px;
+  text-align: center;
+  color: #c23564;
+  background-color: #fff;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom: 5px solid transparent;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.tab-icon {
+  font-size: 24px;
+  width: 32px;
+  position: relative;
+  top: 2px;
+}
+.tab-item:hover {
+  opacity: 1;
+  background-color: rgba(194, 53, 100, 0.05);
+  border-color: rgba(194, 53, 100, 0.1);
+}
+.tab-item.active {
+  opacity: 1;
+}
+/* #bill .dish .name {
+  margin-bottom: 20px;
+} */
+.row {
+  align-items: stretch;
+}
+
+.row .dish {
+  margin-bottom: 24px;
+  display: none;
+}
+.dish .dish-info {
+  border: solid 1px #000;
+  border-top: none;
+}
+.dish-info div {
+  padding: 10px 12px;
+}
+.dish-info .name {
+  font-size: 21px;
+}
+.dish-info .resource,
+.dish-info .prize {
+  font-size: 19px;
+}
+/* List-bill */
+.close {
+  color: #000;
+  display: inline-block;
+  margin-right: 24px;
+  font-size: 20px;
+}
+.title {
+  padding-top: 30px;
+  font-size: 40px;
+  text-align: center;
+}
+/* STORAGE */
+#storage {
+  display: none;
+  margin-top: 100px;
+}
+
+
+/* resource-input */
+#resource-input{
+  margin-top: 100px;
+  display: none;
+}
+#resource-list {
+  width: 100%;
+}
+#resource-list tr {
+  font-size: 40px;
+}
+#resource-list1 tr {
+  font-size: 40px;
+}
+#resource-list1 tr td {
+  align: center;
+  valign: center;
+}
+#resource-input table{
+  margin-top: 20px;
+}
+
+
+

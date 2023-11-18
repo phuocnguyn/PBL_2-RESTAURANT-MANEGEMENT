@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quản lí nhà hàng</title>
+  <link
+   rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  />
+  <link rel="stylesheet" href="./icon/themify-icons/themify-icons.css" />
+  <link rel="stylesheet" href="../Bản sao grid 2.css" />
+  <link rel="stylesheet" href="./css/Menu.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+   integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+   crossorigin="anonymous"
+  />
+  <link
+   href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+   rel="stylesheet"
+  />
+ </head>
+ <body>
+  <div id="main">
+   <div id="nav">
+    <div class="list">
+     <div class="content" id="employee-part">Nhân viên</div>
+     <div class="content" id="work-shift-part">Ca làm</div>
+     <div class="content" id="wage-part">Tính lương</div>
+     <div class="content" id="bill-part">Hoá đơn</div>
+     <div class="content" id="storage-part">Nguyên vật liệu</div>
+     <div class="content" id="resource-input-part">Đơn hàng nhập</div>
+    </div>
+   </div>
+
+   <!-- <div id="image-restaurant" >
+        <img
+          src="https://lh3.googleusercontent.com/2DwneGZ4ymZE_nKr8VLhJZAGefCfStOaEBImVk6lO0z_MoEDhP0RDiCwkK2YPi0Cq_GWJplp95LbrecVGRgwJI3NiO1griANkCBCaYloyH1nO_ligQgaY2zNodpV70C2QYcoK5ho"
+          alt="Hình ảnh nhà hàng"
+        />
+      </div> -->
+
+   <div id="employee" class="grid wide part">
+    <h2>Thông tin nhân viên</h2>
+    <form action="">
+     <div class="row">
+      <div class="col l-6">
+       <label for="">Họ và tên</label><br />
+       <input type="text" placeholder="Nhập họ và tên" />
+      </div>
+      <div class="col l-6">
+       <label for="">Giới tính</label><br />
+       <input type="radio" id="male" name="gender" />
+       <label for="male">Nam</label>
+       <input type="radio" id="female" name="gender" />
+       <label for="female">Nữ</label>
+      </div>
+     </div>
+     <div class="row">
+      <div class="col l-6">
+       <label for="">Địa chỉ email</label><br />
+       <input type="email" placeholder="Nhập địa chỉ gmail" />
+      </div>
+      <div class="col l-6">
+       <label for="">Ngày sinh</label><br />
+       <input type="date" />
+      </div>
+     </div>
+     <div class="row">
+      <div class="col l-6">
+       <label for="">CCCD</label><br />
+       <input type="text" placeholder="Nhập số Căn cước công dân" />
+      </div>
+      <div class="col l-6">
+       <label for="">Thường trú</label><br />
+       <input type="text" placeholder="Nhập địa chỉ thường trú" />
+      </div>
+     </div>
+     <div class="row">
+      <div class="col l-6">
+       <label for="">Vị trí làm việc</label><br />
+       <select name="" id="">
+        <option value="1">Nhân viên phục vụ</option>
+        <option value="2">Đầu bếp</option>
+        <option value="3">Thu ngân</option>
+       </select>
+      </div>
+      <div class="col l-6">
+       <label for="">Mã Nhân viên</label><br />
+       <input type="text" placeholder="Nhập mã NV = Chức vụ + stt" />
+      </div>
+     </div>
+     <button class="employee-confirm">Xác nhận</button>
+     <br />
+     <button class="employee-info">Thông tin nhân viên</button>
+    </form>
+   </div>
+
+   <div id="work-shift" class="grid wide part">
+    <h2>Đăng kí ca làm</h2>
+    <form action="">
+     <div class="row">
+      <div class="col l-6">
+       <label for="employee-id">Mã nhân viên</label><br />
+       <input type="text" id="employee-id" />
+      </div>
+      <div class="col l-6">
+       <label for="">Vị trí làm việc</label><br />
+       <select name="" id="">
+        <option value="1">Nhân viên phục vụ</option>
+        <option value="2">Đầu bếp</option>
+        <option value="3">Thu ngân</option>
+       </select>
+      </div>
+     </div>
+     <div class="row">
+      <div class="col l-6">
+       <label for="">Ngày tháng đăng kí</label><br />
+       <input type="date" name="" id="" />
+      </div>
+      <div class="col l-6">
+       <label for="">Ca làm</label><br />
+       <select name="" id="">
+        <option value="1">1.( 6h - 12h )</option>
+        <option value="2">2.( 12h - 18h )</option>
+        <option value="3">3.( 18h - 0h )</option>
+       </select>
+      </div>
+     </div>
+     <button class="employee-confirm">Xác nhận</button>
+     <br />
+     <button class="employee-info">Ca làm</button>
+    </form>
+   </div>
+
+   <div id="wage" class="grid wide part">
+    <h2>Lương nhân viên</h2>
+    <form action="">
+     <div class="row">
+      <div class="col l-6">
+       Nhập mã NV <br />
+       <input type="text" placeholder="Nhập mã NV" />
+      </div>
+      <div class="col l-6">
+       Nhập tháng/năm <br />
+       <input type="text" placeholder="Nhập tháng/năm" />
+      </div>
+     </div>
+     <button class="employee-confirm">Xác nhận</button>
+    </form>
+   </div>
+
+   <div id="bill" class="grid wide part">
+    <h2>Tạo hoá đơn</h2>
+    <div class="tabs">
+     <div class="all tab-item active">
+      <i class="tab-icon fas fa-code"></i>
+      Tất cả
+     </div>
+     <div class="food tab-item">
+      <i class="tab-icon fas fa-cog"></i>
+      Món ăn
+     </div>
+     <div class="water tab-item">
+      <i class="tab-icon fas fa-pen-nib"></i>
+      Nước uống
+     </div>
+     <div class="line"></div>
+    </div>
+    <div class="row" id="dish-list"></div>
+    <form action="">
+     <div class="row">
+      <div class="col l-6">
+       <label for="">Mã order</label><br />
+       <input type="text" placeholder="Nhập mã order" />
+      </div>
+      <div class="col l-6">
+       <label for="">Mã nhân viên Order</label><br />
+       <input type="number" placeholder="Nhập mã nhân viên" />
+      </div>
+      <div class="col l-6">
+       <label for="">Số bàn</label><br />
+       <input type="number" placeholder="Nhập số bàn" />
+      </div>
+      <div class="col l-6">
+       <label for="">Ghi chú </label><br />
+       <input type="text" placeholder="Nhập ghi chú" />
+      </div>
+     </div>
+    </form>
+    <button class="employee-confirm">Xác nhận</button>
+    <br />
+    <button class="employee-info output-bill-list open">
+     <a href="../Danh sách hóa đơn/DanhSachHoaDonXuat.html"
+      >Danh sách hóa đơn</a
+     >
+    </button>
+   </div>
+
+   <div id="storage" class="grid wide part">
+    <h2>Danh sách nguyên liệu tồn kho</h2>
+    <table border="1" id="resource-list"></table>
+   </div>
+
+   <div id="resource-input" class="grid wide part">
+    <h2>Nhập nguyên liệu</h2>
+    <form action="">
+     <div class="row">
+      <div class="col l-6">
+       <label for="employee-id">Mã hoá đơn</label><br />
+       <input type="text" id="employee-id " />
+      </div>
+      <div class="col l-6">
+       <label for="">Thời gian nhập</label><br />
+       <input type="date" name="" id="" />
+      </div>
+      <div class="col l-6">
+       <label for="">Mã nhà cung cấp</label><br />
+       <input type="text" name="" id="" />
+      </div>
+      <div class="col l-6">
+       <label for="">Tên nhà cung cấp</label><br />
+       <input type="text" name="" id="" />
+      </div>
+      <div class="col l-6">
+       <label for="">SĐT nhà cung cấp</label><br />
+       <input type="text" name="" id="" />
+      </div>
+      <div class="col l-6">
+       <label for="">Địa chỉ nhà cung cấp</label><br />
+       <input type="text" name="" id="" />
+      </div>
+      <div class="col l-12">
+       <table id="resource-input-table" border="1">
+        <tr>
+         <td align="center">Tên nguyên liệu</td>
+         <td style="padding-left: 10px">Mã nguyên liệu</td>
+         <td align="center">Số lượng</td>
+         <td align="center">Đơn vị</td>
+         <td align="center">Giá tiền</td>
+        </tr>
+        <tr>
+         <td>
+          <input type="text" name="" id="" />
+         </td>
+         <td>
+          <input type="text" name="" id="" />
+         </td>
+         <td>
+          <input type="number" name="" id="" />
+         </td>
+         <td>
+          <input type="text" name="" id="" />
+         </td>
+         <td>
+          <input type="number" name="" id="" />
+         </td>
+        </tr>
+       </table>
+      </div>
+     </div>
+     <button class="employee-confirm more">Thêm nguyên liệu</button>
+     <button class="employee-confirm">Xác nhận</button>
+     <br />
+     <button class="employee-info open resource-bill-list">
+      <a href="../Danh sách hóa đơn/DanhSachHoaDonNhap.html"
+       >Danh sách hóa đơn</a
+      >
+     </button>
+    </form>
+   </div>
+  </div>
+  <div id="resource-bill-list" class="new-layer">
+   <div class="grid wide">
+    <div class="header">
+     <button class="close">
+      <i class="ti-close"></i>
+     </button>
+     <h2 class="title">Danh sách hóa đơn nhập</h2>
+    </div>
+    <div class="row bill-list"></div>
+   </div>
+  </div>
+  <script src="./script.js"></script>
+ </body>
+</html>
