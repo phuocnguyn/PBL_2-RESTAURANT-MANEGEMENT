@@ -1,7 +1,7 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-fetch("http://localhost:3000/bill")
+fetch("https://my-json-server.typicode.com/phuocnguyn/PBL_2-RESTAURANT-MANEGEMENT/bill")
     .then(function (response) {
         return response.json();
     })
