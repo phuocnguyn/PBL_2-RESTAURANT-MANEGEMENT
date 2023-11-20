@@ -112,14 +112,7 @@ moreButton.forEach(function (button) {
     };
 });
 
-const closeButtons = $$(".close");
-closeButtons.forEach(function (close) {
-    close.onclick = function () {
-        $$(".new-layer").forEach(function (layer) {
-            layer.style.display = "none";
-        });
-    };
-});
+
 
 function openPart(button, htmlNode) {
     button.onclick = function (e) {
@@ -136,3 +129,52 @@ openPart($("#wage-part"), $("#wage"));
 openPart($("#bill-part"), $("#bill"));
 openPart($("#storage-part"), $("#storage"));
 openPart($("#resource-input-part"), $("#resource-input"));
+
+
+
+function handleSubmit(event) {
+    // event.preventDefault(); // Ngăn chặn form submit theo cách thông thường
+
+    // Lấy giá trị từ các trường form
+    var idOrder = document.getElementById('idOrder').value;
+    var maNV = document.getElementById('maNV').value;
+    var soBan = document.getElementById('soBan').value;
+    var phanTramKhuyenMai = document.getElementById('phanTramKhuyenMai').value;
+    var ghiChu = document.getElementById('ghiChu').value;
+
+    // Dữ liệu để gửi lên API
+    var data = {
+        idOrder: idOrder,
+        maNV: maNV,
+        soBan: soBan,
+        phanTramKhuyenMai: phanTramKhuyenMai,
+        ghiChu: ghiChu
+        // Thêm các trường dữ liệu khác nếu cần
+    };
+
+    // Gửi API POST request
+    fetch('http://localhost:5225/api/Order/PostOrder', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // hoặc response.text() nếu kết quả không phải JSON
+    })
+    .then(data => {
+        // Xử lý kết quả khi request thành công
+        console.log(data);
+    })
+    .catch(error => {
+        // Xử lý lỗi nếu request không thành công
+        console.error('Error:', error);
+    });
+}
+
+// Lắng nghe sự kiện submit trên form và gọi hàm xử lý
+document.getElementById('orderForm').addEventListener('submit', handleSubmit);
