@@ -6,31 +6,17 @@
 html {
   scroll-behavior: smooth;
 }
-label {
-  font-weight: 400;
-  padding-top: 20px;
-}
-.new-layer {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-  justify-content: center;
-  align-items: center;
-}
-.new-layer div {
-  background-color: #fff;
-}
-.new-layer .bill-list {
-  margin: 0 12px;
-  min-height: 500px;
-}
 
 
 
+
+
+h2 {
+  padding: 50px 0;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 40px;
+}
 /* navigation */
 #nav {
   height: 46px;
@@ -74,27 +60,9 @@ label {
   margin-top: 100px;
   display: none;
 }
-h2 {
-  padding: 50px 0;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 40px;
-}
 
-.row .col {
-  font-size: 30px;
-}
-.row .col select {
-  font-size: 30px;
-  padding: 10px 20px;
-  line-height: 50px;
-}
-.row .col input {
-  line-height: 50px;
-  font-size: 30px;
-  padding: 0 20px;
-  width: 100%;
-}
+
+
 #employee .row .col #male,
 #employee .row .col #female {
   width: auto;
@@ -203,6 +171,9 @@ h2 {
 .dish-info .resource,
 .dish-info .prize {
   font-size: 19px;
+}
+.dish-info .idMonAn{
+  display: none;
 }
 /* List-bill */
 .close {

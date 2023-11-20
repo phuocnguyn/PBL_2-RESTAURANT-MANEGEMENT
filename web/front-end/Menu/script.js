@@ -16,14 +16,17 @@ fetch(
                 alt=""
                 />
                 <div class="dish-info">
-                <div class="name">
-                    <i class="ti-info-alt"></i> ${dish.tenMon}
-                </div>
-                <div class="prize"><i class="ti-money"></i>${dish.giaMon}VNĐ</div>
-                <div class="resource">
-                    <i class="ti-hand-point-right"></i> ${dish.thanhPhan}
-                </div>
-                <input type="number" value="0" placeholder="Nhập số lượng" />
+                    <div class="name">
+                        <i class="ti-info-alt"></i> ${dish.tenMon}
+                    </div>
+                    <div class="prize"><i class="ti-money"></i>${dish.giaMon}VNĐ</div>
+                    <div class="resource">
+                        <i class="ti-hand-point-right"></i> ${dish.thanhPhan}
+                    </div>
+                
+                    <input class="idMonAn" name="idMonAn" type = "text " value = ${dish.idNhomMonAn} />
+                    <input class="giaMon" name="giaMon" type = "number" value = ${dish.giaMon} />
+                    <input name="soLuong"  type="number" value=0 placeholder="Nhập số lượng" />
                 </div>
                 
             </div>
