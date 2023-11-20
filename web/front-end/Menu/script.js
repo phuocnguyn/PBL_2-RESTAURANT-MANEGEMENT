@@ -133,7 +133,8 @@ openPart($("#resource-input-part"), $("#resource-input"));
 
 
 function handleSubmit(event) {
-    // event.preventDefault(); // Ngăn chặn form submit theo cách thông thường
+    
+    // Ngăn chặn form submit theo cách thông thường
 
     // Lấy giá trị từ các trường form
     var idOrder = document.getElementById('idOrder').value;
@@ -146,11 +147,15 @@ function handleSubmit(event) {
     var data = {
         idOrder: idOrder,
         maNV: maNV,
-        soBan: soBan,
+        soBan: soBan,   
+        trangThaiMon: "undone",
+        idMonAn: 1,
+        giaMon: 1000,
         phanTramKhuyenMai: phanTramKhuyenMai,
         ghiChu: ghiChu
         // Thêm các trường dữ liệu khác nếu cần
     };
+    console.log(data);
 
     // Gửi API POST request
     fetch('http://localhost:5225/api/Order/PostOrder', {
@@ -175,6 +180,8 @@ function handleSubmit(event) {
         console.error('Error:', error);
     });
 }
-
+let orderForm_submit_btn = $('.orderForm-submit-btn')
 // Lắng nghe sự kiện submit trên form và gọi hàm xử lý
-document.getElementById('orderForm').addEventListener('submit', handleSubmit);
+orderForm_submit_btn.onclick = function (){
+    handleSubmit();
+}
