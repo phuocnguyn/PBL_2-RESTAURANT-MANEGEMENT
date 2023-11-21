@@ -10,7 +10,7 @@ fetch(
     .then(function (dishes) {
         let dishes_list = dishes.map(function (dish) {
             return `
-            <div class="col l-3 dish MonAn${dish.idNhomMonAn}">
+            <div class="col-3 dish MonAn${dish.idNhomMonAn}">
                 <img
                 src="${dish.linkAnh}"
                 alt=""
@@ -26,7 +26,10 @@ fetch(
                 
                     <input class="idMonAn" name="idMonAn" type = "text " value = ${dish.idNhomMonAn} />
                     <input class="giaMon" name="giaMon" type = "number" value = ${dish.giaMon} />
-                    <input name="soLuong"  type="number" value=0 placeholder="Nhập số lượng" />
+                    <div class="form-floating">
+                        <input class="form-control" name="soLuong"  type="number" value=0 placeholder="Nhập số lượng" />
+                        <label class="ml-2" for="soLuong">Số lượng</label>
+                    </div>
                 </div>
                 
             </div>
@@ -98,9 +101,7 @@ fetch(
                 `;
         });
         resource_list = resource_list.join("");
-        document.querySelector("#resource-list").innerHTML =
-            '<tr><td align="center">Mã nguyên liệu</td><td >Tên nguyên liệu</td><td align="center">Số lượng</td><td align="center">Đơn vị</td></tr>' +
-            resource_list;
+        document.querySelector("#resource-list").innerHTML += resource_list;
     });
 
 const moreButton = $$(".more");
@@ -108,11 +109,9 @@ moreButton.forEach(function (button) {
     button.onclick = function (e) {
         e.preventDefault();
         $("#resource-input-table").innerHTML +=
-            '<tr><td> <input type="text" name="" id="" /></td><td><input type="text" name="" id="" /></td><td><input type="number" name="" id="" /></td><td><input type="text" name="" id="" /></td><td><input type="number" name="" id="" /></td></tr>';
+            '<tr><td> <input type="text" name="tenNguyenLieu" id="" /></td><td><input type="text" name="idNguyenLieu" id="" /></td><td><input type="number" name="soLuong" id="" /></td><td><input type="text" name="DonVi" id="" /></td><td><input type="number" name="DonGia" id="" /></td></tr>';
     };
 });
-
-
 
 function openPart(button, htmlNode) {
     button.onclick = function (e) {
@@ -130,58 +129,55 @@ openPart($("#bill-part"), $("#bill"));
 openPart($("#storage-part"), $("#storage"));
 openPart($("#resource-input-part"), $("#resource-input"));
 
-
-
 function handleSubmit(event) {
-    
     // Ngăn chặn form submit theo cách thông thường
 
     // Lấy giá trị từ các trường form
-    var idOrder = document.getElementById('idOrder').value;
-    var maNV = document.getElementById('maNV').value;
-    var soBan = document.getElementById('soBan').value;
-    var phanTramKhuyenMai = document.getElementById('phanTramKhuyenMai').value;
-    var ghiChu = document.getElementById('ghiChu').value;
+    var idOrder = document.getElementById("idOrder").value;
+    var maNV = document.getElementById("maNV").value;
+    var soBan = document.getElementById("soBan").value;
+    var phanTramKhuyenMai = document.getElementById("phanTramKhuyenMai").value;
+    var ghiChu = document.getElementById("ghiChu").value;
 
     // Dữ liệu để gửi lên API
     var data = {
         idOrder: idOrder,
         maNV: maNV,
-        soBan: soBan,   
+        soBan: soBan,
         trangThaiMon: "undone",
         idMonAn: 1,
         giaMon: 1000,
         phanTramKhuyenMai: phanTramKhuyenMai,
-        ghiChu: ghiChu
+        ghiChu: ghiChu,
         // Thêm các trường dữ liệu khác nếu cần
     };
     console.log(data);
 
     // Gửi API POST request
-    fetch('http://localhost:5225/api/Order/PostOrder', {
-        method: 'POST',
+    fetch("http://localhost:5225/api/Order/PostOrder", {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json(); // hoặc response.text() nếu kết quả không phải JSON
-    })
-    .then(data => {
-        // Xử lý kết quả khi request thành công
-        console.log(data);
-    })
-    .catch(error => {
-        // Xử lý lỗi nếu request không thành công
-        console.error('Error:', error);
-    });
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json(); // hoặc response.text() nếu kết quả không phải JSON
+        })
+        .then((data) => {
+            // Xử lý kết quả khi request thành công
+            console.log(data);
+        })
+        .catch((error) => {
+            // Xử lý lỗi nếu request không thành công
+            console.error("Error:", error);
+        });
 }
-let orderForm_submit_btn = $('.orderForm-submit-btn')
+let orderForm_submit_btn = $(".orderForm-submit-btn");
 // Lắng nghe sự kiện submit trên form và gọi hàm xử lý
-orderForm_submit_btn.onclick = function (){
+orderForm_submit_btn.onclick = function () {
     handleSubmit();
-}
+};

@@ -1,7 +1,9 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-fetch("https://my-json-server.typicode.com/phuocnguyn/PBL_2-RESTAURANT-MANEGEMENT/bill")
+fetch(
+    "https://my-json-server.typicode.com/phuocnguyn/PBL_2-RESTAURANT-MANEGEMENT/bill"
+)
     .then(function (response) {
         return response.json();
     })
@@ -32,7 +34,7 @@ fetch("https://my-json-server.typicode.com/phuocnguyn/PBL_2-RESTAURANT-MANEGEMEN
             <div
                 id="detail-bill-${resource.id}"
                 class="card new-layer detail-bill"
-                style="display: none"
+                style="display: none;z-index: 1000;"
             >
                 <div class="container">
                     <div class="card-header">
@@ -126,5 +128,3 @@ closeButtons.forEach(function (close) {
         });
     };
 });
-
-
