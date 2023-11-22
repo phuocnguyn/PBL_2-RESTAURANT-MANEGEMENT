@@ -112,12 +112,16 @@ fetch(
                     soLuong: soLuong,
                     phanTramKhuyenMai: phanTramKhuyenMai,
                     ghiChu: ghiChu,
+                    thanhTien:
+                        dish.giaMon * soLuong +
+                        ((dish.giaMon * soLuong * phanTramKhuyenMai) % 100),
 
                     // Thêm các trường dữ liệu khác nếu cần
                 };
-                console.log(data);
+                
 
                 if (data.soLuong > 0) {
+                    console.log(data);
                     fetch("http://localhost:5225/api/Order/PostOrder", {
                         method: "POST",
                         headers: {
