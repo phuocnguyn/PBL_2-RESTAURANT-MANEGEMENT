@@ -27,8 +27,10 @@ fetch(
                     <input class="idMonAn" name="idMonAn" type = "text " value = ${dish.idNhomMonAn} />
                     <input class="giaMon" name="giaMon" type = "number" value = ${dish.giaMon} />
                     <div class="form-floating">
-                        <input class="form-control" name="soLuong"  type="number" value=0 placeholder="Nhập số lượng" />
-                        <label class="ml-2" for="soLuong">Số lượng</label>
+                        <input class="form-control" name="soLuong-dish-${dish.id}"  type="number" value=0 
+                        id="soLuong-dish-${dish.id}"
+                        placeholder="Nhập số lượng" />
+                        <label class="ml-2" for="soLuong-dish-${dish.id}">Số lượng</label>
                     </div>
                 </div>
                 
@@ -80,6 +82,84 @@ fetch(
                     });
                 }
             };
+            return dishes;
+        });
+        return dishes;
+    })
+    .then(function (dishes) {
+        function handleSubmit(event) {
+            let success = true;
+            // Ngăn chặn form submit theo cách thông thường
+            dishes.forEach(function (dish, index) {
+                var idOrder = document.getElementById("idOrder").value;
+                var maNV = document.getElementById("maNVorder").value;
+                var soBan = document.getElementById("soBan").value;
+                var phanTramKhuyenMai =
+                    document.getElementById("phanTramKhuyenMai").value;
+                var ghiChu = document.getElementById("ghiChu").value;
+                var soLuong = document.getElementById(
+                    `soLuong-dish-${index + 1}`
+                ).value;
+
+                // Dữ liệu để gửi lên API
+                var data = {
+                    idOrder: idOrder,
+                    maNV: maNV,
+                    soBan: soBan,
+                    trangThaiMon: "undone",
+                    idMonAn: index + 1,
+                    giaMon: dish.giaMon,
+                    soLuong: soLuong,
+                    phanTramKhuyenMai: phanTramKhuyenMai,
+                    ghiChu: ghiChu,
+
+                    // Thêm các trường dữ liệu khác nếu cần
+                };
+                console.log(data);
+
+                if (data.soLuong > 0) {
+                    fetch("http://localhost:5225/api/Order/PostOrder", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(data),
+                    })
+                        .then((response) => {
+                            if (!response.ok) {
+                                throw new Error("Network response was not ok");
+                            }
+                            return response.json(); // hoặc response.text() nếu kết quả không phải JSON
+                        })
+                        .then((data) => {
+                            // Xử lý kết quả khi request thành công
+                            success = true;
+                        })
+                        .catch((error) => {
+                            // Xử lý lỗi nếu request không thành công
+                            success = false;
+                        });
+                }
+            });
+            // Lấy giá trị từ các trường form
+            if (success)
+                $("body").innerHTML += `
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    <strong>Success!</strong> Đặt món thành công!
+                </div>
+                `;
+            else
+                $("body").innerHTML += `
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <strong>Fail!</strong> Đặt món không thành công do lỗi API!
+            </div>
+            `;
+        }
+        // Lắng nghe sự kiện submit trên form và gọi hàm xử lý
+        $(".orderForm-submit-btn").addEventListener("click", function () {
+            handleSubmit();
         });
     });
 
@@ -128,56 +208,3 @@ openPart($("#wage-part"), $("#wage"));
 openPart($("#bill-part"), $("#bill"));
 openPart($("#storage-part"), $("#storage"));
 openPart($("#resource-input-part"), $("#resource-input"));
-
-function handleSubmit(event) {
-    // Ngăn chặn form submit theo cách thông thường
-
-    // Lấy giá trị từ các trường form
-    var idOrder = document.getElementById("idOrder").value;
-    var maNV = document.getElementById("maNV").value;
-    var soBan = document.getElementById("soBan").value;
-    var phanTramKhuyenMai = document.getElementById("phanTramKhuyenMai").value;
-    var ghiChu = document.getElementById("ghiChu").value;
-
-    // Dữ liệu để gửi lên API
-    var data = {
-        idOrder: idOrder,
-        maNV: maNV,
-        soBan: soBan,
-        trangThaiMon: "undone",
-        idMonAn: 1,
-        giaMon: 1000,
-        phanTramKhuyenMai: phanTramKhuyenMai,
-        ghiChu: ghiChu,
-        // Thêm các trường dữ liệu khác nếu cần
-    };
-    console.log(data);
-
-    // Gửi API POST request
-    fetch("http://localhost:5225/api/Order/PostOrder", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
-            return response.json(); // hoặc response.text() nếu kết quả không phải JSON
-        })
-        .then((data) => {
-            // Xử lý kết quả khi request thành công
-            console.log(data);
-        })
-        .catch((error) => {
-            // Xử lý lỗi nếu request không thành công
-            console.error("Error:", error);
-        });
-}
-let orderForm_submit_btn = $(".orderForm-submit-btn");
-// Lắng nghe sự kiện submit trên form và gọi hàm xử lý
-orderForm_submit_btn.onclick = function () {
-    handleSubmit();
-};
