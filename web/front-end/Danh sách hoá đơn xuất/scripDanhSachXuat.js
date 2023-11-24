@@ -90,7 +90,7 @@ fetch(
                     <tr>
                         <td style="padding-left: 10px">${i.tenMon}</td>
                         <td>${i.soLuong}</td>
-                        <td>${i.donGia}</td>
+                        <td>${i.giaMon }</td>
                         <td>${i.thanhTienItem}</td>
                     </tr>
                 `;
