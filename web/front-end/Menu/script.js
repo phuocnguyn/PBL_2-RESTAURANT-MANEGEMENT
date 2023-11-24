@@ -1,6 +1,34 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
+function Queue() {
+    var collection = [];
+    this.print = function () {
+        console.log(collection);
+    };
+    this.enqueue = function (...element) {
+        for (let i = 0; i < elements.length; i++) {
+            // Thêm phần tử vào cuối mảng
+            collection[collection.length] = elements[i];
+            // Trả về độ dài mới của mảng
+            return arr.length;
+        }
+    };
+    this.dequeue = function () {
+        return collection.shift();
+    };
+    this.front = function () {
+        return collection[0];
+    };
+
+    this.isEmpty = function () {
+        return collection.length === 0;
+    };
+    this.size = function () {
+        return collection.length;
+    };
+}
+
 fetch(
     "https://my-json-server.typicode.com/phuocnguyn/PBL_2-RESTAURANT-MANEGEMENT/dishes"
 )
@@ -118,7 +146,6 @@ fetch(
 
                     // Thêm các trường dữ liệu khác nếu cần
                 };
-                
 
                 if (data.soLuong > 0) {
                     console.log(data);
