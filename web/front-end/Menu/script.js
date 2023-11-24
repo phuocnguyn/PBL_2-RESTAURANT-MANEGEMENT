@@ -116,7 +116,8 @@ fetch(
     })
     .then(function (dishes) {
         function handleSubmit(event) {
-            let success = true;
+            let success = false;
+
             // Ngăn chặn form submit theo cách thông thường
             dishes.forEach(function (dish, index) {
                 var idOrder = document.getElementById("idOrder").value;
@@ -135,58 +136,60 @@ fetch(
                     maNV: maNV,
                     soBan: soBan,
                     trangThaiMon: "undone",
-                    idMonAn: dish.idMonAn,
                     giaMon: dish.giaMon,
-                    soLuong: soLuong,
                     phanTramKhuyenMai: phanTramKhuyenMai,
                     ghiChu: ghiChu,
                     thanhTien:
                         dish.giaMon * soLuong +
                         ((dish.giaMon * soLuong * phanTramKhuyenMai) % 100),
+                    idMonAn: dish.id,
+                    soLuong: soLuong,
 
                     // Thêm các trường dữ liệu khác nếu cần
                 };
+                setTimeout(function(){
 
-                if (data.soLuong > 0) {
-                    console.log(data);
-                    fetch("http://localhost:5225/api/Order/PostOrder", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                    })
-                        .then((response) => {
-                            if (!response.ok) {
-                                throw new Error("Network response was not ok");
-                            }
-                            return response.json(); // hoặc response.text() nếu kết quả không phải JSON
+                    if (data.soLuong > 0) { 
+                        console.log(data);
+                        fetch("http://localhost:5225/api/OrderItems/PostOrderItems", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(data),
                         })
-                        .then((data) => {
-                            // Xử lý kết quả khi request thành công
-                            success = true;
-                        })
-                        .catch((error) => {
-                            // Xử lý lỗi nếu request không thành công
-                            success = false;
-                        });
-                }
+                            .then((response) => {
+                                if (!response.ok) {
+                                    throw new Error("Network response was not ok");
+                                }
+                                return response.json(); // hoặc response.text() nếu kết quả không phải JSON
+                            })
+                            .then((data) => {
+                                // Xử lý kết quả khi request thành công
+                                success = true;
+                                $("body").innerHTML += `
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    <strong>Success!</strong> Đặt món thành công!
+                                </div>
+                                `;
+                            })
+                            .catch((error) => {
+                                // Xử lý lỗi nếu request không thành công
+                                success = false;
+                                $("body").innerHTML += 
+                                    `
+                                    <div class="alert alert-danger alert-dismissible">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                        <strong>Fail!</strong> Đặt món không thành công do lỗi API!
+                                    </div>
+                                    `;
+                            });
+                            
+                        }
+                },10000)
             });
             // Lấy giá trị từ các trường form
-            if (success)
-                $("body").innerHTML += `
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    <strong>Success!</strong> Đặt món thành công!
-                </div>
-                `;
-            else
-                $("body").innerHTML += `
-            <div class="alert alert-danger alert-dismissible">
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                <strong>Fail!</strong> Đặt món không thành công do lỗi API!
-            </div>
-            `;
         }
         // Lắng nghe sự kiện submit trên form và gọi hàm xử lý
         $(".orderForm-submit-btn").addEventListener("click", function () {
@@ -233,6 +236,7 @@ function openPart(button, htmlNode) {
         htmlNode.style.display = "block";
     };
 }
+
 openPart($("#employee-part"), $("#employee"));
 openPart($("#work-shift-part"), $("#work-shift"));
 openPart($("#wage-part"), $("#wage"));

@@ -2,7 +2,7 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
 fetch(
-    "https://my-json-server.typicode.com/phuocnguyn/PBL_2-RESTAURANT-MANEGEMENT/bill"
+    "http://localhost:5225/api/HoaDonXuat/HoaDonXuat"
 )
     .then(function (response) {
         return response.json();
@@ -88,7 +88,7 @@ fetch(
             let items = resource.items.map(function (i) {
                 return `
                     <tr>
-                        <td style="padding-left: 10px">${i.tenMon}</td>
+                        <td style="padding-left: 10px">${i.tenMonAn}</td>
                         <td>${i.soLuong}</td>
                         <td>${i.giaMon }</td>
                         <td>${i.thanhTienItem}</td>
@@ -103,6 +103,7 @@ fetch(
             $(`.table-detail-bill-${resource.id}`).innerHTML = items;
 
             $(`#open-detail-bill-id${resource.id}`).onclick = function () {
+                console.log(1);
                 $(`#detail-bill-${resource.id}`).style.display = "flex";
             };
             $(`.close-${resource.id}`).onclick = function () {
