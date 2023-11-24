@@ -74,7 +74,7 @@ fetch(
                     </div>
                     <div class="card-footer">
                         <h4 class="text-center">
-                            Cảm ơn Quý khánh đã ủng hộ nhà hàng của chúng tôi!
+                            Cảm ơn quý khánh đã ủng hộ nhà hàng của chúng tôi!
                         </h4>
                     </div>
                 </div>

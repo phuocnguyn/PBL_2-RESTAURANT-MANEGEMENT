@@ -107,7 +107,7 @@ fetch(
                     maNV: maNV,
                     soBan: soBan,
                     trangThaiMon: "undone",
-                    idMonAn: index + 1,
+                    idMonAn: dish.idMonAn,
                     giaMon: dish.giaMon,
                     soLuong: soLuong,
                     phanTramKhuyenMai: phanTramKhuyenMai,
