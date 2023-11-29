@@ -14,3 +14,5 @@ openPart($("#orderItem-List-part"), $("#orderItem"));
 openPart($("#bill-part"), $("#bill"));
 openPart($("#storage-part"), $("#storage"));
 openPart($("#resource-input-part"), $("#resource-input"));
+openPart($("#home-part"), $("#home"));
+
