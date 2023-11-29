@@ -66,13 +66,8 @@ h2 {
     font-size: 30px;
 }
 
-/* work-shift */
-#work-shift {
-    display: none;
-    margin-top: 100px;
-}
-/* Wage */
-#wage {
+/* orderItem */
+#orderItem {
     display: none;
     margin-top: 100px;
 }

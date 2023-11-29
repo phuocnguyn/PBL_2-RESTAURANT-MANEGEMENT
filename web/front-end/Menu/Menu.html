@@ -27,8 +27,10 @@
             <div id="nav">
                 <div class="list">
                     <div class="content" id="employee-part">Nhân viên</div>
-                    <div class="content" id="work-shift-part">Ca làm</div>
-                    <div class="content" id="wage-part">Tính lương</div>
+
+                    <div class="content" id="orderItem-List-part">
+                        Món đã đặt
+                    </div>
                     <div class="content" id="bill-part">Hoá đơn</div>
                     <div class="content" id="storage-part">Nguyên vật liệu</div>
                     <div class="content" id="resource-input-part">
@@ -131,62 +133,46 @@
                 </form>
             </div>
 
-            <div id="work-shift" class="container part">
-                <h2>Đăng kí ca làm</h2>
-                <form action="">
-                    <div class="row">
-                        <div class="col-6 mb-2">
-                            <label class="ml-2" for="employee-id"
-                                >Mã nhân viên</label
-                            >
-                            <input type="text" id="employee-id" />
+            <div id="orderItem" class="container part">
+                <h2>Danh sách món ăn được đặt</h2>
+                <div id="orderItem-list" class="row">
+                    <div class="col-4 card">
+                        <div class="card-header">
+                            <input type="checkbox" />
+                            <h4 class="text-center">Món ăn hóa đơn 12</h4>
                         </div>
-                        <div class="col-6 mb-2">
-                            <label class="ml-2" for="">Vị trí làm việc</label
-                            ><br />
-                            <select name="" id="">
-                                <option value="1">Nhân viên phục vụ</option>
-                                <option value="2">Đầu bếp</option>
-                                <option value="3">Thu ngân</option>
-                            </select>
+                        <div class="card-body">
+                            Bàn số: 1 <br />
+                            Tên món ăn: Cá voi <br />
+                            Số lượng: 2 <br />
+                            Ghi chú: không hành
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 mb-2">
-                            <label class="ml-2" for="">Ngày tháng đăng kí</label
-                            ><br />
-                            <input type="date" name="" id="" />
-                        </div>
-                        <div class="col-6 mb-2">
-                            <label class="ml-2" for="">Ca làm</label><br />
-                            <select name="" id="">
-                                <option value="1">1.( 6h - 12h )</option>
-                                <option value="2">2.( 12h - 18h )</option>
-                                <option value="3">3.( 18h - 0h )</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button class="employee-confirm">Xác nhận</button>
-                    <br />
-                    <button class="employee-info">Ca làm</button>
-                </form>
-            </div>
-
-            <div id="wage" class="grid wide part">
-                <h2>Lương nhân viên</h2>
-                <form action="">
-                    <div class="row">
-                        <div class="col-6">
-                            Nhập mã NV <br />
-                            <input type="text" placeholder="Nhập mã NV" />
-                        </div>
-                        <div class="col-6">
-                            Nhập tháng/năm <br />
-                            <input type="text" placeholder="Nhập tháng/năm" />
+                        <div class="card-footer">
+                            <table>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr class="table-success">
+                                            <th>Mã nguyên liệu</th>
+                                            <th style="padding-left: 10px">
+                                                Tên nguyên liệu
+                                            </th>
+                                            <th>Số lượng</th>
+                                            <th>Đơn vị</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-resource-orderItem">
+                                        <tr>
+                                            <td>....</td>
+                                            <td>....</td>
+                                            <td>....</td>
+                                            <td>....</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </table>
                         </div>
                     </div>
-                    <button class="employee-confirm">Xác nhận</button>
-                </form>
+                </div>
             </div>
 
             <div id="bill" class="container part">
@@ -321,7 +307,7 @@
                                 id="TaoLuc"
                                 placeholder="Nhập thời gian nhập"
                             />
-                            <label class="ml-2"  for="TaoLuc"
+                            <label class="ml-2" for="TaoLuc"
                                 >Thời gian nhập</label
                             >
                         </div>
@@ -413,7 +399,8 @@
                     <button
                         class="btn btn-dark open resource-bill-list float-end"
                     >
-                        <a href="../Danh sách hoá đơn nhập/DanhSachHoaDonNhap.html"
+                        <a
+                            href="../Danh sách hoá đơn nhập/DanhSachHoaDonNhap.html"
                             >Danh sách hóa đơn</a
                         >
                     </button>
@@ -421,6 +408,9 @@
             </div>
         </div>
 
-        <script src="./script.js"></script>
+        <script src="./makeOrderItem.js"></script>
+        <script src="./resource.js"></script>
+        <script src="./openPart.js"></script>
+        <script src="./moreBtn.js"></script>
     </body>
 </html>

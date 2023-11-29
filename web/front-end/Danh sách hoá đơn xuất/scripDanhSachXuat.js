@@ -1,9 +1,7 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-fetch(
-    "http://localhost:5225/api/HoaDonXuat/HoaDonXuat"
-)
+fetch("http://localhost:5225/api/HoaDonXuat/HoaDonXuat")
     .then(function (response) {
         return response.json();
     })
@@ -81,8 +79,8 @@ fetch(
             </div>
             `;
         });
-        detail_bill_list = detail_bill_list.join("");
-        $(".detail-bill-list").innerHTML = detail_bill_list;
+
+        $(".detail-bill-list").innerHTML = detail_bill_list.join("");
 
         Resource.forEach(function (resource) {
             let items = resource.items.map(function (i) {
@@ -90,7 +88,7 @@ fetch(
                     <tr>
                         <td style="padding-left: 10px">${i.tenMonAn}</td>
                         <td>${i.soLuong}</td>
-                        <td>${i.giaMon }</td>
+                        <td>${i.giaMon}</td>
                         <td>${i.thanhTienItem}</td>
                     </tr>
                 `;
