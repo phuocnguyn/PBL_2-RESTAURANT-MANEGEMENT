@@ -90,7 +90,14 @@ fetch(
         return dishes;
     })
 
+    // Post Order + Post OrderItem
     .then(function (dishes) {
+        let idOrder = document.getElementById("idOrder").value;
+        let maNV = document.getElementById("maNVorder").value;
+        let soBan = document.getElementById("soBan").value;
+        let phanTramKhuyenMai =
+            document.getElementById("phanTramKhuyenMai").value;
+        let ghiChu = document.getElementById("ghiChu").value;
         const orderItem_list = {
             list: [],
             addOrderItem: function (orderItem) {
@@ -142,6 +149,7 @@ fetch(
                 </div>
                     `;
             },
+
             saveOrderItem: function () {
                 $$(".btn-done").forEach(function (btn, index) {
                     btn.onclick = function () {
@@ -162,10 +170,15 @@ fetch(
                         )
                             .then((response) => {
                                 if (!response.ok) {
-                                    throw new Error(
-                                        "Network response was not ok"
-                                    );
+                                    throw (order = {
+                                        id: idOrder,
+                                        thoiGian: "",
+                                        taoBoi: maNV,
+                                        phanTramKhuyenMai: phanTramKhuyenMai,
+                                        trangThaiThanhToan: "Chưa Thanh Toán",
+                                    });
                                 }
+
                                 return response.json();
                             })
                             .then((orderItem) => {
@@ -177,32 +190,55 @@ fetch(
                                         </div>
                                         `;
                             })
-                            .catch((error) => {
-                                success = false;
-                                $("body").innerHTML += `
-                                            <div class="alert alert-danger alert-dismissible">
-                                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                                <strong>Fail!</strong> Lưu món không thành công do lỗi API!
-                                            </div>
-                                            `;
+                            .catch((order) => {
+                                console.log("Tạo order");
+                                fetch(
+                                    "http://localhost:5225/api/OrderItems/PostOrderItems",
+                                    {
+                                        method: "POST",
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                        },
+                                        body: JSON.stringify(order),
+                                    }
+                                );
                             });
                     };
                 });
             },
         };
         function handleSubmit(event) {
-            let success = false;
-            // Ngăn chặn form submit theo cách thông thường
+            $(".postOrder-btn").onclick = function () {
+                fetch("http://localhost:5225/api/OrderItems/PostOrderItems", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(order),
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+                        return response.json();
+                    })
+                    .then((orderItem) => {
+                        success = true;
+                        $("body").innerHTML += `
+                                <div class="alert alert-success alert-dismissible">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    <strong>Success!</strong> Lưu món thành công!
+                                </div>
+                                `;
+                    })
+                    .catch((error) => {});
+            };
             dishes.forEach(function (dish, index) {
-                var idOrder = document.getElementById("idOrder").value;
-                var maNV = document.getElementById("maNVorder").value;
-                var soBan = document.getElementById("soBan").value;
-                var phanTramKhuyenMai =
-                    document.getElementById("phanTramKhuyenMai").value;
-                var ghiChu = document.getElementById("ghiChu").value;
-                var soLuong = document.getElementById(
+                let soLuong = document.getElementById(
                     `soLuong-dish-${index + 1}`
                 ).value;
+                let success = false;
+                // Ngăn chặn form submit theo cách thông thường
 
                 // Dữ liệu để gửi lên API
                 var data = {
@@ -221,6 +257,13 @@ fetch(
                     soLuong: soLuong,
 
                     // Thêm các trường dữ liệu khác nếu cần
+                };
+                let order = {
+                    id: idOrder,
+                    thoiGian: "",
+                    taoBoi: maNV,
+                    phanTramKhuyenMai: phanTramKhuyenMai,
+                    trangThaiThanhToan: "CHƯA THANH TOÁN",
                 };
 
                 if (data.soLuong > 0) {
