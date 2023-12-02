@@ -83,15 +83,16 @@
 
             <div id="employee" class="container part">
                 <h2>Thông tin nhân viên</h2>
-                <form action="" method="post">
+                <form>
                     <div class="row">
                         <div class="col-6 mb-2 form-floating">
                             <input
                                 class="form-control"
+                                id="hoVaTen"
                                 type="text"
                                 placeholder="Nhập họ và tên"
                             />
-                            <label class="ml-2" for="">Họ và tên</label>
+                            <label class="ml-2" for="hoVaTen">Họ và tên</label>
                         </div>
                         <div class="col-6 mb-2 form-floating">
                             <select class="form-select" name="sex" id="sex">
@@ -113,8 +114,12 @@
                             >
                         </div>
                         <div class="col-6 mb-2 form-floating">
-                            <input class="form-control" type="date" />
-                            <label class="ml-2" for="">Ngày sinh</label>
+                            <input
+                                id="birthday"
+                                class="form-control"
+                                type="date"
+                            />
+                            <label class="ml-2" for="birthday">Ngày sinh</label>
                         </div>
 
                         <div class="col-6 mb-2 form-floating">
@@ -163,7 +168,9 @@
                     </button>
                     <br />
                     <button class="btn btn-success employee-info float-end">
-                        Thông tin nhân viên
+                        <a href="../Danh sách nhân viên/DanhSachNhanVien.html"
+                            >Danh sách nhân viên</a
+                        >
                     </button>
                 </form>
             </div>
@@ -310,10 +317,10 @@
                     id="resource-list"
                 >
                     <tr class="table-success">
-                        <td align="center">Mã nguyên liệu</td>
+                        <td class="text-center">Mã nguyên liệu</td>
                         <td>Tên nguyên liệu</td>
-                        <td align="center">Số lượng</td>
-                        <td align="center">Đơn vị</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Đơn vị</td>
                     </tr>
                 </table>
             </div>
@@ -442,8 +449,8 @@
                 </form>
             </div>
         </div>
-
         <script src="./makeOrderItem.js"></script>
+        <script src="./postEmployee.js"></script>
         <script src="./resource.js"></script>
         <script src="./openPart.js"></script>
         <script src="./moreBtn.js"></script>
