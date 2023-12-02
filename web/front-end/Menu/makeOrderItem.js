@@ -92,6 +92,12 @@ fetch(
 
     // Post Order + Post OrderItem
     .then(function (dishes) {
+        let idOrder = document.getElementById("idOrder").value;
+        let maNV = document.getElementById("maNVorder").value;
+        let soBan = document.getElementById("soBan").value;
+        let phanTramKhuyenMai =
+            document.getElementById("phanTramKhuyenMai").value;
+        let ghiChu = document.getElementById("ghiChu").value;
         const orderItem_list = {
             list: [],
             addOrderItem: function (orderItem) {
@@ -164,15 +170,9 @@ fetch(
                         )
                             .then((response) => {
                                 if (!response.ok) {
-                                    throw (order = {
-                                        id: orderItem_list.list[index].idOrder,
-                                        thoiGian: "null",
-                                        taoBoi: orderItem_list.list[index].maNV,
-                                        phanTramKhuyenMai:
-                                            orderItem_list.list[index]
-                                                .phanTramKhuyenMai,
-                                        trangThaiThanhToan: "Chưa Thanh Toán",
-                                    });
+                                    throw new Error(
+                                        "Network response was not ok"
+                                    );
                                 }
 
                                 return response.json();
@@ -186,48 +186,32 @@ fetch(
                                         </div>
                                         `;
                             })
-                            .catch((order) => {
-                                fetch(
-                                    "http://localhost:5225/api/Order/PostOrder",
-                                    {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-Type": "application/json",
-                                        },
-                                        body: JSON.stringify(order),
-                                    }
-                                ).then(() => {
-                                    fetch(
-                                        "http://localhost:5225/api/OrderItems/PostOrderItems",
-                                        {
-                                            method: "POST",
-                                            headers: {
-                                                "Content-Type":
-                                                    "application/json",
-                                            },
-                                            body: JSON.stringify(
-                                                orderItem_list.list[index]
-                                            ),
-                                        }
-                                    );
-                                });
+                            .catch((error) => {
+                                success = false;
+                                $("body").innerHTML += `
+                                            <div class="alert alert-danger alert-dismissible">
+                                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                                <strong>Fail!</strong> Lưu món không thành công do lỗi API!
+                                            </div>
+                                            `;
                             });
                     };
                 });
             },
         };
         function handleSubmit(event) {
+            let success = false;
+            // Ngăn chặn form submit theo cách thông thường
             dishes.forEach(function (dish, index) {
-                let idOrder = document.getElementById("idOrder").value;
-                let maNV = document.getElementById("maNVorder").value;
-                let soBan = document.getElementById("soBan").value;
-                let phanTramKhuyenMai =
+                var idOrder = document.getElementById("idOrder").value;
+                var maNV = document.getElementById("maNVorder").value;
+                var soBan = document.getElementById("soBan").value;
+                var phanTramKhuyenMai =
                     document.getElementById("phanTramKhuyenMai").value;
-                let ghiChu = document.getElementById("ghiChu").value;
-                let soLuong = document.getElementById(
+                var ghiChu = document.getElementById("ghiChu").value;
+                var soLuong = document.getElementById(
                     `soLuong-dish-${index + 1}`
                 ).value;
-                let success = false;
 
                 var data = {
                     tenMon: dish.tenMon,
@@ -243,6 +227,13 @@ fetch(
                         ((dish.giaMon * soLuong * phanTramKhuyenMai) % 100),
                     idMonAn: dish.id,
                     soLuong: soLuong,
+                };
+                let order = {
+                    id: idOrder,
+                    thoiGian: "",
+                    taoBoi: maNV,
+                    phanTramKhuyenMai: phanTramKhuyenMai,
+                    trangThaiThanhToan: "CHƯA THANH TOÁN",
                 };
 
                 if (data.soLuong > 0) {
