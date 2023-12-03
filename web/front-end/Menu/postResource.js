@@ -1,6 +1,6 @@
 function handleSubmit(event) {
     event.preventDefault();
-    const maNV = $("#maNV").value;
+    const maND = $("#maNV").value;
     const hoVaTen = $("#hoVaTen").value;
     const gioiTinh = $("#sex").value;
     const email = $("#email").value;
