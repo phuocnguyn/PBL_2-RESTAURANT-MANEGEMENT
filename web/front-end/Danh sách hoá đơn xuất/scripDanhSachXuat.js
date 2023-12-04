@@ -13,7 +13,7 @@ fetch("http://localhost:5225/api/HoaDonXuat/HoaDonXuat")
                         <div class="card-header">ID hóa đơn: ${resource.id}</div>
                         <div class="card-body">
                             Thời gian: ${resource.thoiGian} <br />
-                            Tạo bởi: ${resource.taoBoi}<br />
+                            Tạo bởi: ${resource.hoTen}<br />
                             Mã NV: ${resource.maNV} <br />
                             Thành tiền: ${resource.tongCong}<br />
                         </div>

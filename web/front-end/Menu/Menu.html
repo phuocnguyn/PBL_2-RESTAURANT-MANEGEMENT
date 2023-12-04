@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <title>Quản lí nhà hàng</title>
         <link rel="stylesheet" href="./icon/themify-icons/themify-icons.css" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -10,6 +11,12 @@
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
             integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
             crossorigin="anonymous"
         />
         <link
@@ -21,6 +28,7 @@
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
             rel="stylesheet"
         />
+        <link rel="stylesheet" href="../toastMessage.css" />
     </head>
     <body>
         <div id="main">
@@ -146,7 +154,9 @@
 
                         <div class="col-6 mb-2 form-floating">
                             <select class="form-select" name="job" id="job">
-                                <option value="Nhân viên phục vụ">Nhân viên phục vụ</option>
+                                <option value="Nhân viên phục vụ">
+                                    Nhân viên phục vụ
+                                </option>
                                 <option value="Đầu bếp">Đầu bếp</option>
                                 <option value="Thu ngân">Thu ngân</option>
                             </select>
@@ -450,6 +460,7 @@
                 </form>
             </div>
         </div>
+        <script src="../toatMessage.js"></script>
         <script src="./makeOrderItem.js"></script>
         <script src="./postEmployee.js"></script>
         <script src="./resource.js"></script>

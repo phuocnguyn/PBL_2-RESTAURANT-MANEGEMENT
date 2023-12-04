@@ -6,8 +6,16 @@
         <title>Login Form</title>
         <link
             rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+            integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+            crossorigin="anonymous"
+        />
+
+        <link
+            rel="stylesheet"
             href="./web/front-end/Form đăngn nhâp/css/LoginForm.css"
         />
+        <link rel="stylesheet" href="./web/front-end/toastMessage.css" />
     </head>
     <body>
         <form>
@@ -16,12 +24,16 @@
             <input type="text" id="username" name="username" required />
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required />
-
+            <input
+                type="password"
+                id="password"
+                name="password"
+                required
+                current-password
+            />
             <button id="submit-login-btn" type="submit">Login</button>
-            <div id="result"></div>
         </form>
-
+        <script src="./web/front-end/toatMessage.js"></script>
         <script src="./web/front-end/Form đăngn nhâp/Login.js"></script>
     </body>
 </html>

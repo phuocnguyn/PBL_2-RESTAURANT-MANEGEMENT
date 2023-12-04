@@ -19,7 +19,7 @@ function handleSubmit(event) {
         cccd: CCCD,
         thuongTru: thuongTru,
         chucVu: job,
-        maNV: maNV
+        maNV: maNV,
     };
     console.log(employee_infor);
     fetch("http://localhost:5225/api/NhanVien/PostNhanVien", {
@@ -29,34 +29,36 @@ function handleSubmit(event) {
         },
         body: JSON.stringify(employee_infor),
     })
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error(
-                "Network response was not ok"
-            );
-        }
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
 
-        return response.json();
-    })
-    .then((orderItem) => {
-        success = true;
-        $("body").innerHTML += `
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    <strong>Success!</strong> Lưu món thành công!
-                </div>
-                `;
-    })
-    .catch((error) => {
-        success = false;
-        $("body").innerHTML += `
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        <strong>Fail!</strong> Lưu món không thành công do lỗi API!
-                    </div>
-                    `;
-    });
-
+            return response.json();
+        })
+        .then((orderItem) => {
+            function showSuccessToast() {
+                toast({
+                    title: "Đăng kí thành công!",
+                    message: "Thông tin nhân viên đã được thêm vào danh sách",
+                    type: "success",
+                    duration: 5000,
+                });
+            }
+            showSuccessToast();
+        })
+        .catch((error) => {
+            function showSuccessToast() {
+                toast({
+                    title: "Thất bại!",
+                    message:
+                        "Thông tin nhân viên không thể được thêm vào do lỗi API",
+                    type: "error",
+                    duration: 5000,
+                });
+            }
+            showSuccessToast();
+        });
 }
 
 $(".employee-confirm").addEventListener("click", function () {
