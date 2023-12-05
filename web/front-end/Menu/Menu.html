@@ -187,44 +187,7 @@
 
             <div id="orderItem" class="container part">
                 <h2>Danh sách món ăn được đặt</h2>
-                <div id="orderItem-list" class="row">
-                    <div class="col-4 card">
-                        <div class="card-header">
-                            <input type="checkbox" />
-                            <h4 class="text-center">Món ăn hóa đơn 12</h4>
-                        </div>
-                        <div class="card-body">
-                            Bàn số: 1 <br />
-                            Tên món ăn: Cá voi <br />
-                            Số lượng: 2 <br />
-                            Ghi chú: không hành
-                        </div>
-                        <div class="card-footer">
-                            <table>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr class="table-success">
-                                            <th>Mã nguyên liệu</th>
-                                            <th style="padding-left: 10px">
-                                                Tên nguyên liệu
-                                            </th>
-                                            <th>Số lượng</th>
-                                            <th>Đơn vị</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="table-resource-orderItem">
-                                        <tr>
-                                            <td>....</td>
-                                            <td>....</td>
-                                            <td>....</td>
-                                            <td>....</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                <div id="orderItem-list" class="row"></div>
             </div>
 
             <div id="bill" class="container part">
@@ -447,7 +410,9 @@
                         </div>
                     </div>
                     <button class="btn btn-dark more">Thêm nguyên liệu</button>
-                    <button class="btn btn-dark">Xác nhận</button>
+                    <button id="btn-submit-resource-bill" class="btn btn-dark">
+                        Xác nhận
+                    </button>
                     <br />
                     <button
                         class="btn btn-dark open resource-bill-list float-end"
@@ -461,7 +426,7 @@
             </div>
         </div>
         <script src="../toatMessage.js"></script>
-        <script src="./makeOrderItem.js"></script>
+        <script src="./postOrderItem&Order.js"></script>
         <script src="./postEmployee.js"></script>
         <script src="./resource.js"></script>
         <script src="./openPart.js"></script>

@@ -3,7 +3,7 @@ const $$ = document.querySelectorAll.bind(document);
 
 fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
     .then(function (response) {
-        return response.json();     
+        return response.json();
     })
     .then(function (infor_list) {
         // bill
@@ -31,37 +31,48 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
         });
 
         $("#employee-info").innerHTML = infors.join("");
-        return infor_list
+        return infor_list;
     })
 
-
-
-
-
     .then((infor_list) => {
-        infor_list.forEach((infor,index)=>{
-            $(`#delete-${infor.maNV}`).onclick = function(){
-                console.log(index)
-                fetch(`http://localhost:5225/api/NhanVien/DeleteNhanVien/${infor.maNV}`,{
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                
-                    },
-
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Delete failed.');
+        infor_list.forEach((infor, index) => {
+            $(`#delete-${infor.maNV}`).onclick = function () {
+                console.log(index);
+                fetch(
+                    `http://localhost:5225/api/NhanVien/DeleteNhanVien/${infor.maNV}`,
+                    {
+                        method: "DELETE",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
                     }
-                    location.reload();
-                    console.log('Record deleted successfully.');
-                })
-                .catch(error => {
-                    console.error('Error:', error.message);
-                });
-            }
-        })
+                )
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Delete failed.");
+                        }
+                        location.reload();
+                        function showSuccessToast() {
+                            toast({
+                                title: "Thành công!",
+                                message: "Đã xóa nhân viên thành công!",
+                                type: "success",
+                                duration: 5000,
+                            });
+                        }
+                        showSuccessToast();
+                    })
+                    .catch((error) => {
+                        function showSuccessToast() {
+                            toast({
+                                title: "Thất bại!",
+                                message: "Xóa nhân viên thất bại do lỗi API!",
+                                type: "error",
+                                duration: 5000,
+                            });
+                        }
+                        showSuccessToast();
+                    });
+            };
+        });
     });
-
-

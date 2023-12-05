@@ -37,6 +37,7 @@ function handleSubmit(event) {
             return response.json();
         })
         .then((orderItem) => {
+            console.log(1)
             function showSuccessToast() {
                 toast({
                     title: "Đăng kí thành công!",
@@ -48,6 +49,8 @@ function handleSubmit(event) {
             showSuccessToast();
         })
         .catch((error) => {
+            console.log(2)
+
             function showSuccessToast() {
                 toast({
                     title: "Thất bại!",

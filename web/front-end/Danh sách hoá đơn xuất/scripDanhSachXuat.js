@@ -5,41 +5,43 @@ fetch("http://localhost:5225/api/HoaDonXuat/HoaDonXuat")
     .then(function (response) {
         return response.json();
     })
-    .then(function (Resource) {
+    .then(function (bills) {
         // bill
-        let resource_list = Resource.map(function (resource) {
+        let bill_list = bills.map(function (bill) {
             return `
-                    <div id="bill-${resource.id}"class="col-3 card ">
-                        <div class="card-header">ID hóa đơn: ${resource.id}</div>
+                    <div id="bill-${bill.id}"class="col-3 card ">
+                        <div class="card-header">ID hóa đơn: ${bill.id}</div>
                         <div class="card-body">
-                            Thời gian: ${resource.thoiGian} <br />
-                            Tạo bởi: ${resource.hoTen}<br />
-                            Mã NV: ${resource.maNV} <br />
-                            Thành tiền: ${resource.tongCong}<br />
+                            Thời gian: ${bill.thoiGian} <br />
+                            Tạo bởi: ${bill.hoTen}<br />
+                            Mã NV: ${bill.maNV} <br />
+                            Thành tiền: ${bill.tongCong}<br />
+                            Trạng thái: ${bill.trangThai}
                         </div>
                         <div class="card-footer d-grid">
-                            <button id="open-detail-bill-id${resource.id}"class="btn btn-outline-success">Chi tiết</button>
+                            <button id="open-detail-bill-id${bill.id}"class="btn btn-outline-success">Chi tiết</button>
                         </div>
                     </div>
                 `;
         });
-        resource_list = resource_list.join("");
-        $("#bill-list").innerHTML = resource_list;
+
+        $("#bill-list").innerHTML = bill_list.join("");
 
         // detail bill
-        let detail_bill_list = Resource.map(function (resource) {
+        let detail_bill_list = bills.map(function (bill) {
             return `
             <div
-                id="detail-bill-${resource.id}"
+                id="detail-bill-${bill.id}"
                 class="card new-layer detail-bill"
-                style="display: none;z-index: 1000;"
+                style="display: none;z-index: 10;"
             >
                 <div class="container">
                     <div class="card-header">
-                        <button class="close-${resource.id} float-end p-1 mt-3">
+                        <button class="btn btn-danger close-${bill.id} float-end p-1 m-1">
                             <i class="ti-close"></i>
                         </button>
-                        <h4 class="text-center">Hóa đơn ID${resource.id}</h4>
+                        <button id="${bill.id}" class="btn btn-success bill-finish float-end p-1 m-1">Xuất hoá đơn</button>
+                        <h4 class="text-center">Hóa đơn ID${bill.id}</h4>
                     </div>
                     <div class="card-body">
                         <table class="table">
@@ -54,7 +56,7 @@ fetch("http://localhost:5225/api/HoaDonXuat/HoaDonXuat")
                                 </tr>
                             </thead>
                             <tbody
-                                class="table-detail-bill-${resource.id}"
+                                class="table-detail-bill-${bill.id}"
                             ></tbody>
                         </table>
                         <div class="row">
@@ -62,11 +64,14 @@ fetch("http://localhost:5225/api/HoaDonXuat/HoaDonXuat")
                                 <img src="./img/QRcode.jpg" alt="" />
                             </div>
                             <div class="col-6">
-                                Thành tiền: ${resource.thanhTien} <br />
-                                % Khuyến mãi: ${resource.phanTramKhuyenMai}
-                                <br />
-                                Khuyến mãi: ${resource.khuyenMai} <br />
-                                Tổng tiền:${resource.tongCong} <br />
+                                Thời gian: ${bill.thoiGian} <br />
+                                Tạo bởi: ${bill.hoTen}<br />
+                                Mã NV: ${bill.maNV} <br />
+                                Thành tiền: ${bill.thanhTien} <br />
+                                % Khuyến mãi: ${bill.phanTramKhuyenMai}<br />
+                                Khuyến mãi: ${bill.khuyenMai} <br />
+                                Tổng tiền:${bill.tongCong} <br />
+                                Trạng thái: ${bill.trangThai}
                             </div>
                         </div>
                     </div>
@@ -82,8 +87,8 @@ fetch("http://localhost:5225/api/HoaDonXuat/HoaDonXuat")
 
         $(".detail-bill-list").innerHTML = detail_bill_list.join("");
 
-        Resource.forEach(function (resource) {
-            let items = resource.items.map(function (i) {
+        bills.forEach(function (bill) {
+            let items = bill.items.map(function (i) {
                 return `
                     <tr>
                         <td style="padding-left: 10px">${i.tenMonAn}</td>
@@ -93,37 +98,76 @@ fetch("http://localhost:5225/api/HoaDonXuat/HoaDonXuat")
                     </tr>
                 `;
             });
+            $(`.table-detail-bill-${bill.id}`).innerHTML = items.join("");
 
-            items = items.join("");
-
-            let table_detail_bill = `.table-detail-bill-${resource.id}`;
-
-            $(`.table-detail-bill-${resource.id}`).innerHTML = items;
-
-            $(`#open-detail-bill-id${resource.id}`).onclick = function () {
-                console.log(1);
-                $(`#detail-bill-${resource.id}`).style.display = "flex";
+            $(`#open-detail-bill-id${bill.id}`).onclick = function () {
+                $(`#detail-bill-${bill.id}`).style.display = "flex";
             };
-            $(`.close-${resource.id}`).onclick = function () {
-                $(`#detail-bill-${resource.id}`).style.display = "none";
+            $(`.close-${bill.id}`).onclick = function () {
+                $(`#detail-bill-${bill.id}`).style.display = "none";
+            };
+        });
+        return bill;
+    })
+
+    .then(function (bill_list) {
+        const bills = [];
+        bill_list.forEach(function (bill) {
+            bills[bill.id] = bill;
+        });
+        let date = new Date();
+        $$(".bill-finish").forEach(function (btn) {
+            function handleUpdateBill(event) {
+                let bill = {
+                    id: btn.id,
+                    thoiGian: `${date.getDate()}/${
+                        date.getMonth() + 1
+                    }/${date.getFullYear()}`,
+                    trangThaiThanhToan: "Đã thanh toán",
+                };
+
+                fetch("http://localhost:5225/api/UpdateTime/UpdateThoiGian", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(bill),
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                        }
+
+                        return response.json();
+                    })
+                    .then((orderItem) => {
+                        location.reload();
+                        function showSuccessToast() {
+                            toast({
+                                title: "Thành công!",
+                                message: "Đã xuất hóa đơn thành công ",
+                                type: "success",
+                                duration: 5000,
+                            });
+                        }
+                        showSuccessToast();
+                    })
+                    .catch((error) => {
+                        function showSuccessToast() {
+                            toast({
+                                title: "Thất bại!",
+                                message: "Xuất hóa đơn thất bại do lỗi API",
+                                type: "error",
+                                duration: 5000,
+                            });
+                        }
+                        showSuccessToast();
+                    });
+            }
+            btn.onclick = function () {
+                handleUpdateBill();
             };
         });
     });
 
-const moreButton = $$(".more");
-moreButton.forEach(function (button) {
-    button.onclick = function (e) {
-        e.preventDefault();
-        $("#resource-input-table").innerHTML +=
-            '<tr><td> <input type="text" name="" id="" /></td><td><input type="text" name="" id="" /></td><td><input type="number" name="" id="" /></td><td><input type="text" name="" id="" /></td><td><input type="number" name="" id="" /></td></tr>';
-    };
-});
 
-const closeButtons = $$(".close");
-closeButtons.forEach(function (close) {
-    close.onclick = function () {
-        $$(".new-layer").forEach(function (layer) {
-            layer.style.display = "none";
-        });
-    };
-});

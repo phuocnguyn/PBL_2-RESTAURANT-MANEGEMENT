@@ -189,3 +189,6 @@ h2 {
 #resource-input table {
     margin-top: 20px;
 }
+.toast:not(.show) {
+    display: flex;
+}

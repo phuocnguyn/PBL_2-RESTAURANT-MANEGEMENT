@@ -8,7 +8,7 @@ function login(event) {
         password: password,
     };
 
-    fetch("http://localhost:5225/api/Login/Login", {
+    fetch("http://localhost:5225/api/Auth/Login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -23,7 +23,7 @@ function login(event) {
                 function showSuccessToast() {
                     toast({
                         title: "Thất bại!",
-                        message: "Mật khẩu hoặc tài khoản của bạn đã sai!",
+                        message: "Tài khoản hoặc mật khẩu không đúng!",
                         type: "error",
                         duration: 5000,
                     });
@@ -36,7 +36,7 @@ function login(event) {
             function showSuccessToast() {
                 toast({
                     title: "Thất bại!",
-                    message: "Mật khẩu hoặc tài khoản của bạn đã sai!",
+                    message: "Tài khoản hoặc mật khẩu không đúng!",
                     type: "error",
                     duration: 5000,
                 });

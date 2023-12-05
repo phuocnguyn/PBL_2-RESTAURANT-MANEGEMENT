@@ -56,69 +56,12 @@
             </h2>
 
             <div id="bill-list" class="row">
-                <div class="col-3 card">
-                    <div class="card-header">ID hóa đơn nhập: ...</div>
-                    <div class="card-body">
-                        Nhà cung cấp:... <br />
-                        Mã nhà cung cấp <br />
-                        Thời gian:... <br />
-                        Tạo bởi: ...<br />
-                        Mã NV: ...<br />
-                        Thành tiền: ...<br />
-                    </div>
-                    <div class="card-footer d-grid">
-                        <button class="btn btn-outline-success">
-                            Chi tiết
-                        </button>
-                    </div>
-                </div>
+
             </div>
         </div>
 
-        <div class="detail-bill-list container">
-            <div
-                id="detail-bill-${resource.id}"
-                class="card new-layer detail-bill"
-                style="display: none; z-index: 1000"
-            >
-                <div class="container">
-                    <div class="card-header">
-                        <button
-                            class="btn-close close float-end p-1 mt-3"
-                        ></button>
-                        <h4 class="text-center">Hóa đơn nhập ID1</h4>
-                    </div>
-                    <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr class="table-success">
-                                    <th style="padding-left: 10px">
-                                        Tên Nguyên liệu
-                                    </th>
-                                    <th>Mã nguyên liệu</th>
-                                    <th>Số lượng</th>
-                                    <th>Đơn vị</th>
-                                    <th>Đơn giá</th>
-                                    <th>Thành tiền</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="padding-left: 10px">...</td>
-                                    <td>...</td>
-                                    <td>...</td>
-                                    <td>...</td>
-                                </tr>
-                                <tr>
-                                    <td>Tổng tiền</td>
-                                    <td>....</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="detail-bill-list container"></div>
         <script src="./scriptDanhSachNhap.js"></script>
+        <script src="../closeBtn.js"></script>
     </body>
 </html>
