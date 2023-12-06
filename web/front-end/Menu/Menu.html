@@ -319,13 +319,21 @@
                             <input
                                 class="form-control"
                                 type="date"
-                                name="TaoLuc"
-                                id="TaoLuc"
+                                name="NgayNhap"
+                                id="GioNhap"
                                 placeholder="Nhập thời gian nhập"
                             />
-                            <label class="ml-2" for="TaoLuc"
-                                >Thời gian nhập</label
-                            >
+                            <label class="ml-2" for="TaoLuc">Gio nhập</label>
+                        </div>
+                        <div class="col-6 form-floating mb-2">
+                            <input
+                                class="form-control"
+                                type="text"
+                                name="NgayNhap"
+                                id="NgayNhap"
+                                placeholder="Nhập tên nhà cung cấp"
+                            />
+                            <label class="ml-2" for="NgayNhap">Ngay nhap</label>
                         </div>
                         <div class="col-6 form-floating mb-2">
                             <input
@@ -339,73 +347,66 @@
                                 >Mã nhà cung cấp</label
                             >
                         </div>
-                        <div class="col-6 form-floating mb-2">
-                            <input
-                                class="form-control"
-                                type="text"
-                                name="TenNhaCC"
-                                id="TenNhaCC"
-                                placeholder="Nhập tên nhà cung cấp"
-                            />
-                            <label class="ml-2" for="TenNhaCC"
-                                >Tên nhà cung cấp</label
-                            >
-                        </div>
-                        <div class="col-6 form-floating mb-2">
-                            <input
-                                class="form-control"
-                                type="text"
-                                name="SoDienThoai"
-                                id="SoDienThoai"
-                                placeholder="nhập SDT"
-                            />
-                            <label class="ml-2" for="SoDienThoai"
-                                >SĐT nhà cung cấp</label
-                            >
-                        </div>
-                        <div class="col-6 form-floating mb-2">
-                            <input
-                                class="form-control"
-                                type="text"
-                                name="DiaChi"
-                                id="DiaChi"
-                                placeholder="Nhập địa chỉ"
-                            />
-                            <label class="ml-2" for="DiaChi"
-                                >Địa chỉ nhà cung cấp</label
-                            >
-                        </div>
+
                         <div class="col-12">
-                            <table
-                                id="resource-input-table"
-                                class="table table-bordered"
-                            >
-                                <tr>
-                                    <td align="center">Tên nguyên liệu</td>
-                                    <td style="padding-left: 10px">
-                                        Mã nguyên liệu
-                                    </td>
-                                    <td align="center">Số lượng</td>
-                                    <td align="center">Đơn vị</td>
-                                    <td align="center">Giá tiền</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <input type="text" name="" id="" />
-                                    </td>
-                                    <td>
-                                        <input type="text" name="" id="" />
-                                    </td>
-                                    <td>
-                                        <input type="number" name="" id="" />
-                                    </td>
-                                    <td>
-                                        <input type="text" name="" id="" />
-                                    </td>
-                                    <td>
-                                        <input type="number" name="" id="" />
-                                    </td>
-                                </tr>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td style="padding-left: 10px">
+                                            Mã nguyên liệu
+                                        </td>
+                                        <td align="center">Số lượng</td>
+                                        <td align="center">Đơn giá</td>
+                                    </tr>
+                                </thead>
+                                <tbody id="resource-input-table">
+                                    <tr class="input-row">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                name=""
+                                                class="idNguyenLieu"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="number"
+                                                name="soLuongNguyenLieu"
+                                                class="oLuongNguyenLieu"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="number"
+                                                name=""
+                                                class="donGia"
+                                            />
+                                        </td>
+                                    </tr>
+                                    <tr class="input-row">
+                                        <td>
+                                            <input
+                                                type="text"
+                                                name=""
+                                                class="idNguyenLieu"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="number"
+                                                name="soLuongNguyenLieu"
+                                                class="oLuongNguyenLieu"
+                                            />
+                                        </td>
+                                        <td>
+                                            <input
+                                                type="number"
+                                                name=""
+                                                class="donGia"
+                                            />
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -428,8 +429,9 @@
         <script src="../toatMessage.js"></script>
         <script src="./postOrderItem&Order.js"></script>
         <script src="./postEmployee.js"></script>
-        <script src="./resource.js"></script>
+        <script src="./getResource.js"></script>
         <script src="./openPart.js"></script>
         <script src="./moreBtn.js"></script>
+        <script src="./postResource.js"></script>
     </body>
 </html>
