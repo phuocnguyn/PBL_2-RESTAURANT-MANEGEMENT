@@ -1,7 +1,7 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-fetch("http://localhost:5225/api/HoaDonXuat/HoaDonXuat")
+fetch("http://localhost:5225/api/HoaDonKho/HoaDonKho")
     .then(function (response) {
         return response.json();
     })
@@ -12,12 +12,13 @@ fetch("http://localhost:5225/api/HoaDonXuat/HoaDonXuat")
                     <div class="col-3 card">
                         <div class="card-header">ID hóa đơn nhập: ${bill.id}</div>
                         <div class="card-body">
-                            Nhà cung cấp: ${bill.id}<br />
-                            Mã nhà cung cấp: ${bill.id}<br />
-                            Thời gian: ${bill.id} <br />
-                            Tạo bởi: ${bill.id}<br />
+                            Nhà cung cấp: ${bill.nhaCC}<br />
+                            Mã nhà cung cấp: ${bill.idNhaCC}<br />
+                            Ngày: ${bill.ngay} <br />
+                            Giờ: ${bill.gio} <br />
+                            Tạo bởi: ${bill.taoBoi}<br />
                             Mã NV: ${bill.id}<br />
-                            Thành tiền: ${bill.id}<br />
+                            Thành tiền: ${bill.tongCong}<br />
                         </div>
                         <div class="card-footer d-grid">
                         <button class="btn btn-outline-success">

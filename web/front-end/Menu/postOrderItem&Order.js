@@ -1,5 +1,16 @@
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
+function kiemtraDanhSachNhanVien(NhanVien) {
+    return fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
+        .then(response => response.json())
+        .then(employee_list => {
+          
+            // Sử dụng some() để kiểm tra nếu có ít nhất một nhân viên có mã trùng
+            
+            if(!employee_list.some(employee => employee.maNV == NhanVien.maNV)) throw "0"
+        })
+        
+}
 
 fetch(
     "https://my-json-server.typicode.com/phuocnguyn/PBL_2-RESTAURANT-MANEGEMENT/dishes"
@@ -177,7 +188,8 @@ fetch(
                                     showSuccessToast();
                                     throw (order = {
                                         id: orderItem_list.list[index].idOrder,
-                                        thoiGian: "null",
+                                        ngay: "null",
+                                        gio: "null",
                                         maNV: orderItem_list.list[index].maNV,
                                         hoTen: "string",
                                         phanTramKhuyenMai:
@@ -210,7 +222,9 @@ fetch(
                                         },
                                         body: JSON.stringify(order),
                                     }
-                                ).then(() => {
+                                )
+                                .then((response) => {
+                                    console.log(response)
                                     post(index);
                                 });
                             });
@@ -255,20 +269,36 @@ fetch(
                 };
 
                 if (data.soLuong > 0) {
-                    orderItem_list.addOrderItem(data);
-                    function showSuccessToast() {
-                        toast({
-                            title: "Thành công!",
-                            message: "Đã đặt món thành công!",
-                            type: "success",
-                            duration: 5000,
-                        });
-                    }
-                    showSuccessToast();
-                    orderItem_list.showOrderItem(data);
-                    orderItem_list.saveOrderItem();
+
+                    kiemtraDanhSachNhanVien(data)
+                    
+                        .then((result)=>{
+                            orderItem_list.addOrderItem(data);
+                            function showSuccessToast() {
+                                toast({
+                                    title: "Thành công!",
+                                    message: "Đã đặt món thành công!",
+                                    type: "success",
+                                    duration: 5000,
+                                });
+                            }
+                            showSuccessToast();
+                            orderItem_list.showOrderItem(data);
+                            orderItem_list.saveOrderItem();
+                        })
+                        .catch((error)=>{
+                            function showSuccessToast() {
+                                toast({
+                                    title: "Thất bại!",
+                                    message: "Đặt món thất bại do mã nhân viên không tồn tại!",
+                                    type: "error",
+                                    duration: 5000,
+                                });
+                            }
+                            showSuccessToast();
+                        })
                 }
-                console.log(orderItem_list);
+                
             });
         }
 

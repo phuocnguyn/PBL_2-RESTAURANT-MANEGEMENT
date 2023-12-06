@@ -1,5 +1,5 @@
 fetch(
-    "https://my-json-server.typicode.com/phuocnguyn/PBL_2-RESTAURANT-MANEGEMENT/Resource"
+    "http://localhost:5225/api/NguyenLieu/NguyenLieu"
 )
     .then(function (response) {
         return response.json();

@@ -1,5 +1,3 @@
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
 
 fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
     .then(function (response) {
@@ -7,6 +5,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
     })
     .then(function (infor_list) {
         // bill
+        console.log(infor_list)
         let infors = infor_list.map(function (infor) {
             return `
                 <tr>
@@ -34,12 +33,15 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
         return infor_list;
     })
 
+
+
+    // DELETE EMPLOYEE
     .then((infor_list) => {
         infor_list.forEach((infor, index) => {
             $(`#delete-${infor.maNV}`).onclick = function () {
                 console.log(index);
                 fetch(
-                    `http://localhost:5225/api/NhanVien/DeleteNhanVien/${infor.maNV}`,
+                    `http://localhost:5225/api/NhanVien/DeleteNhanVien/${index}`,
                     {
                         method: "DELETE",
                         headers: {
@@ -96,7 +98,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                                     id="hoVaTen"
                                     type="text"
                                     placeholder="Nhập họ và tên"
-                                    value=${infor.hoTen}
+                                    value="${infor.hoTen}"
                                 />
                                 <label class="ml-2" for="hoVaTen">Họ và tên</label>
                             </div>
@@ -114,7 +116,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                                     class="form-control"
                                     type="email"
                                     placeholder="Nhập địa chỉ gmail"
-                                    ${infor.email}
+                                    value="${infor.email}"
                                 />
                                 <label class="ml-2" for="email"
                                     >Địa chỉ email</label
@@ -125,7 +127,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                                     id="birthday"
                                     class="form-control"
                                     type="date"
-                                    ${infor.ngaySinh}
+                                    value = "${infor.ngaySinh}"
                                 />
                                 <label class="ml-2" for="birthday">Ngày sinh</label>
                             </div>
@@ -136,7 +138,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                                     class="form-control"
                                     type="text"
                                     placeholder="Nhập số Căn cước công dân"
-                                    ${infor.cccd}
+                                    value ="${infor.cccd}"
                                 />
                                 <label class="ml-2" for="CCCD">CCCD</label>
                             </div>
@@ -147,7 +149,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                                     placeholder="Nhập địa chỉ thường trú"
                                     id="thuongTru"
                                     name="thuongTru"
-                                    ${infor.thuongTru}
+                                    value = "${infor.thuongTru}"
                                 />
                                 <label class="ml-2" for="thuongTru"
                                     >Thường trú</label
@@ -155,7 +157,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                             </div>
 
                             <div class="col-6 mb-2 form-floating">
-                                <select class="form-select" name="job" id="job" value = ${infor.chucVu}>
+                                <select class="form-select" name="job" id="job" value = "${infor.chucVu}">
                                     <option value="Nhân viên phục vụ">
                                         Nhân viên phục vụ
                                     </option>
@@ -171,7 +173,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                                     placeholder="Nhập mã NV = Chức vụ + stt"
                                     name="maNV"
                                     id="maNV"
-                                    ${infor.maNV}
+                                    value="${infor.maNV}"
                                 />
                                 <label class="ml-2" for="maNV">Mã Nhân viên</label>
                             </div>
@@ -186,6 +188,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                 `;
 
                 function handleSubmit(event) {
+                    
                     event.preventDefault();
                     const maNV = $("#maNV").value;
                     const hoVaTen = $("#hoVaTen").value;
@@ -195,8 +198,9 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                     const CCCD = $("#CCCD").value;
                     const thuongTru = $("#thuongTru").value;
                     const job = $("#job").value;
-
+                    console.log($("#hoVaTen"))
                     let employee_infor = {
+                        maNV: maNV,
                         hoTen: hoVaTen,
                         gioiTinh: gioiTinh,
                         email: email,
@@ -204,10 +208,9 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                         cccd: CCCD,
                         thuongTru: thuongTru,
                         chucVu: job,
-                        maNV: maNV,
                     };
                     console.log(employee_infor);
-                    fetch("", {
+                    fetch("http://localhost:5225/api/NhanVien/PutNhanVien", {
                         method: "PUT",
                         headers: {
                             "Content-Type": "application/json",
@@ -222,7 +225,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                             return response.json();
                         })
                         .then((orderItem) => {
-                            console.log(1);
+                            location.reload();
                             function showSuccessToast() {
                                 toast({
                                     title: "Thành công!",
@@ -236,7 +239,7 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                         })
                         .catch((error) => {
                             console.log(2);
-
+							
                             function showSuccessToast() {
                                 toast({
                                     title: "Thất bại!",

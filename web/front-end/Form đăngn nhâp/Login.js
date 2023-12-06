@@ -17,9 +17,12 @@ function login(event) {
     })
         .then((response) => response.json())
         .then((data) => {
-            if (data.message == 1) {
+            
+            if (data.Message == 1) {
+                console.log(1)
                 window.location.href = "./web/front-end/Menu/Menu.html";
             } else {
+                
                 function showSuccessToast() {
                     toast({
                         title: "Thất bại!",
@@ -45,6 +48,6 @@ function login(event) {
         });
 }
 
-document.getElementById("submit-login-btn").onclick = function () {
+document.getElementById("submit-login-btn").onclick = function (event) {
     login(event);
 };
