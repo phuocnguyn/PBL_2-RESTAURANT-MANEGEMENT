@@ -85,6 +85,9 @@ fetch("http://localhost:5225/api/NhanVien/GetNhanVien")
                 $(".update-employee").innerHTML = `
                 <div class="new-layer">
                     <div class="container">
+                        <button class="btn btn-danger close-${infor.id} float-end p-1 m-1">
+                            <i class="ti-close"></i>
+                        </button>
                         <h2 class="text-center m-4">Chỉnh sửa nhân viên</h2>
                         <div class="row">
                             <div class="col-6 mb-2 form-floating">
