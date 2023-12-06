@@ -62,6 +62,6 @@ function handleSubmit(event) {
         });
 }
 
-$(".employee-confirm").addEventListener("click", function () {
+$(".employee-confirm").addEventListener("click", function (event) {
     handleSubmit(event);
 });

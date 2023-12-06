@@ -92,7 +92,6 @@ fetch(
 
     // Post Order + Post OrderItem
     .then(function (dishes) {
-        
         const orderItem_list = {
             list: [],
             addOrderItem: function (orderItem) {
@@ -148,7 +147,7 @@ fetch(
             saveOrderItem: function () {
                 $$(".btn-done").forEach(function (btn, index) {
                     function post(index) {
-                        console.log(orderItem_list.list[index])
+                        console.log(orderItem_list.list[index]);
                         delete orderItem_list.list[index].tenMon;
                         orderItem_list.list[index].trangThaiMon = "done";
 
@@ -254,13 +253,22 @@ fetch(
 
                     // Thêm các trường dữ liệu khác nếu cần
                 };
-                
+
                 if (data.soLuong > 0) {
                     orderItem_list.addOrderItem(data);
+                    function showSuccessToast() {
+                        toast({
+                            title: "Thành công!",
+                            message: "Đã đặt món thành công!",
+                            type: "success",
+                            duration: 5000,
+                        });
+                    }
+                    showSuccessToast();
                     orderItem_list.showOrderItem(data);
                     orderItem_list.saveOrderItem();
                 }
-                console.log(orderItem_list)
+                console.log(orderItem_list);
             });
         }
 
