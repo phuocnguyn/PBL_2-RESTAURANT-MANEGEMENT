@@ -7,7 +7,6 @@ function login(event) {
         username: username,
         password: password,
     };
-
     fetch("http://localhost:5225/api/Auth/Login", {
         method: "POST",
         headers: {
@@ -17,12 +16,10 @@ function login(event) {
     })
         .then((response) => response.json())
         .then((data) => {
-            
-            if (data.Message == 1) {
-                console.log(1)
+            console.log(data)
+            if (data.message == "1") { 
                 window.location.href = "./web/front-end/Menu/Menu.html";
             } else {
-                
                 function showSuccessToast() {
                     toast({
                         title: "Thất bại!",
